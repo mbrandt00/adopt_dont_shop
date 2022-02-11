@@ -1,7 +1,10 @@
 class Pet < ApplicationRecord
+  has_many :pet_applications
+  has_many :applications, through: :pet_applications
+  belongs_to :shelter
+
   validates :name, presence: true
   validates :age, presence: true, numericality: true
-  belongs_to :shelter
 
   def shelter_name
     shelter.name
@@ -9,5 +12,9 @@ class Pet < ApplicationRecord
 
   def self.adoptable
     where(adoptable: true)
+  end
+
+  def prepare_for_creation
+    binding.pry
   end
 end
