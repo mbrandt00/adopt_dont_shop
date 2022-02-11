@@ -1,0 +1,6 @@
+<h1>Applications</h1>
+
+<% @petapplications.each do |app| %>
+<h4> <a href="/pets/applications/<%= app.id %>"><%= app.application.name%>'s application for <%=app.pet.name%></h4>
+
+<% end %>

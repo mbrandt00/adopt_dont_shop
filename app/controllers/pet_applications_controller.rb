@@ -3,6 +3,7 @@ class PetApplicationsController < ApplicationController
   def index
     @petapplications = PetApplication.all
   end
+
   def new
   end
 
