@@ -1,10 +1,13 @@
 <h1>Application Page</h1>
-<h3>Application Status: <%= @application.application_status%></h3>
+<h3>Application Status: <%= @petapplication.application.application_status%></h3>
+<h4>Desired Dog: <%= @petapplication.pet.name%></h3>
+
+<h4>Application Information:</h4>
 <ul>
-  <li>Name: <%=@application.name %></li>
-  <li>Street address: <%=@application.street_address %></li>
-  <li>City: <%=@application.city %></li>
-  <li>State: <%=@application.state %></li>
-  <li>Zipcode: <%=@application.zipcode %></li>
-  <li>Description: <%=@application.description %></li>
+  <li>Name: <%=@petapplication.application.name %></li>
+  <li>Street address: <%=@petapplication.application.street_address %></li>
+  <li>City: <%=@petapplication.application.city %></li>
+  <li>State: <%=@petapplication.application.state %></li>
+  <li>Zipcode: <%=@petapplication.application.zipcode %></li>
+  <li>Description: <%=@petapplication.application.description %></li>
 </ul>

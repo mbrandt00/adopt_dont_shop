@@ -11,11 +11,11 @@ class PetApplicationsController < ApplicationController
     pets.each do |c|
       PetApplication.create(application: application, pet_id: c.id)
     end
-    redirect_to "/pets/application/#{application.id}"
+    redirect_to "/pets/application/#{PetApplication.last.id}"
   end
 
   def show
-    @application = PetApplication.find(params[:id])
+    @petapplication = PetApplication.find(params[:id])
   end
 
   private
