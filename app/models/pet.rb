@@ -5,6 +5,7 @@ class Pet < ApplicationRecord
 
   validates :name, presence: true
   validates :age, presence: true, numericality: true
+  validates :breed, presence:true
 
   def shelter_name
     shelter.name
@@ -14,7 +15,4 @@ class Pet < ApplicationRecord
     where(adoptable: true)
   end
 
-  def prepare_for_creation
-    binding.pry
-  end
 end
