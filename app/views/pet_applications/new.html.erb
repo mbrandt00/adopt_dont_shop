@@ -1,9 +1,9 @@
 <h1>New Application</h1>
 
-<%= form_with url: "/pets/application", method: :post, local:true do |form| %>
+<%= form_with url: "/pets/applications", method: :post, local:true do |form| %>
 <h4>Which dogs are you applying for? </h4>
 <h4><%= form.label :desired_dogs  %></h4>
-  <p><%= form.collection_check_boxes :desired_dogs, @dogs, :id, :name  %></p>
+  <p><%= form.collection_check_boxes :desired_dogs, Pet.all, :id, :name  %></p>
 <h4><%= form.label :name %> </h4>
   <p><%= form.text_field :name %></p>
 <h4><%= form.label :street_address %> </h4>
