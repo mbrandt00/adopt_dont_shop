@@ -8,7 +8,6 @@ class CreateApplications < ActiveRecord::Migration[5.2]
       t.integer :zipcode
       t.string :description
       t.string :application_status
-      t.string :desired_dogs, array: true, default: []
 
       t.timestamps
     end

@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 2022_02_11_013230) do
     t.integer "zipcode"
     t.string "description"
     t.string "application_status"
-    t.string "desired_dogs", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
