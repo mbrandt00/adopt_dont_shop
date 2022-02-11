@@ -1,6 +1,6 @@
 <h1><%= @petapplication.application.name%>'s Application Status for <%= @petapplication.pet.name%>
 </h1>
-<h2>Status: <%= @petapplication.application.application_status%></h2>
+<h2>Status: <%= @petapplication.application_status%></h2>
 
 <h4>Desired Dog:</h3>
   <ul>
@@ -9,7 +9,7 @@
     <li> Currently Adoptable? <%=@petapplication.pet.adoptable ? 'Yes': 'No' %> </li>
   </ul>
 
-<h4>Application Information</h4>
+<h4>Application Information:</h4>
 <ul>
   <li>Name: <%=@petapplication.application.name %></li>
   <li>Street address: <%=@petapplication.application.street_address %></li>
