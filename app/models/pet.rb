@@ -16,7 +16,7 @@ class Pet < ApplicationRecord
   end
 
   def self.sorted(dogname)
-    where("name LIKE ?", "%#{dogname}%")
+    where("lower(name) LIKE ?", "%#{dogname.downcase}%")
   end
 
 
