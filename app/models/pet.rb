@@ -15,4 +15,9 @@ class Pet < ApplicationRecord
     where(adoptable: true)
   end
 
+  def self.sorted(dogname)
+    where("name LIKE ?", "%#{dogname}%")
+  end
+
+
 end

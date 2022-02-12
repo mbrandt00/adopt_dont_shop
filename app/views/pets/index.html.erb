@@ -1,5 +1,5 @@
 <h1>All pets</h1>
-<h3>Start Application! <%= link_to "Start an Application", "/pets/applications/new"%> </h3>
+<h3><%= link_to "Start an Application", "/pets/applications/new"%> </h3>
 <%= form_with url: "/pets", method: :get, local: true do |f| %>
   <%= f.label :search %>
   <%= f.text_field :search %>

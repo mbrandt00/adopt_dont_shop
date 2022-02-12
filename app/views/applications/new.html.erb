@@ -1,0 +1,17 @@
+<h1>New Application</h1>
+
+<%= form_with url: "/pets/applications", method: :post, local:true do |form| %>
+<h4>Please enter your information </h4>
+<h3><%= form.label :name %> </h3>
+  <p><%= form.text_field :name %></p>
+<h3><%= form.label :street_address %> </h3>
+  <p><%= form.text_field :street_address %></p>
+  <h3><%= form.label :city %> </h3>
+    <p><%= form.text_field :city %></p>
+  <h3><%= form.label :state %> </h3>
+    <p><%= form.text_field :state %></p>
+  <h3><%= form.label :zipcode %></h3>
+    <p><%= form.number_field :zipcode %></p>
+
+  <%= form.submit 'Submit Application' %>
+<% end %>
