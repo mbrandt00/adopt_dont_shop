@@ -1,0 +1,42 @@
+<h1><%=@pending_app.name%>'s Application
+  </h1>
+  <h2>Status:
+    <%= @pending_app.status%></h2>
+
+  <h4>Applicant Information:</h4>
+  <ul>
+    <li>Name:
+      <%=@pending_app.name %></li>
+    <li>Street address:
+      <%=@pending_app.street_address %></li>
+    <li>City:
+      <%=@pending_app.city %></li>
+    <li>State:
+      <%=@pending_app.state %></li>
+    <li>Zipcode:
+      <%=@pending_app.zipcode %></li>
+    <li>Description:
+      <%=@pending_app.description %></li>
+  </ul>
+
+  <h4>Pet(s) Applied for:
+  </h4>
+  <%@pending_app.pets.each do |pet|  %>
+    <div id="selected_dog-<%=pet.id%>">
+        <ul>
+          <li>Name:
+            <%=pet.name %>
+          </li>
+          <li>Age:
+            <%=pet.age %>
+          </li>
+          <li>Breed:
+            <%=pet.breed %>
+          </li>
+          <li>Shelter:
+            <%=pet.shelter_name %>
+          </li>
+        </ul>
+      <%=pet.adoptable ? button_to("Approve pet", "/admin/applications/#{@pending_app.id}/#{pet.id}") : "Pet Approved!"%>
+    </div>
+<% end %>

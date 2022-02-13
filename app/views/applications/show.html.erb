@@ -16,8 +16,7 @@
   <li>Zipcode:
     <%=@application.zipcode %></li>
 </ul>
-<%if @application.pets.empty? == false%>
-  <h4>Selected Pets Information:
+<h4>Selected Pets Information:
   </h4>
   <%@application.pets.each do |pet|  %>
     <div class="selected_dogs">
@@ -39,7 +38,6 @@
       </div>
     </div>
   <% end %>
-<% end %>
 
 <% if @application.status == "In Progress" && @application.pets.empty?%>
   <h4>Please add a pet to this application</h4>
