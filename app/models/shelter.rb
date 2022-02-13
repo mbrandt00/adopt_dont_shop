@@ -35,4 +35,11 @@ class Shelter < ApplicationRecord
   def shelter_pets_filtered_by_age(age_filter)
     adoptable_pets.where('age >= ?', age_filter)
   end
+
+  def self.pending_applications
+    pending_shelter_ids = Application.where(status: 'Pending').joins(:pets).pluck(:shelter_id).uniq
+    find(pending_shelter_ids)
+  end
+
+
 end
