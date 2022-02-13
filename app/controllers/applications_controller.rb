@@ -1,8 +1,5 @@
 class ApplicationsController < ApplicationController
 
-  def index
-    @petapplications = PetApplication.all
-  end
 
   def create
     application = Application.new(application_params)

@@ -1,5 +1,5 @@
 class Pet < ApplicationRecord
-  has_many :pet_applications
+  has_many :pet_applications, dependent: :delete_all
   has_many :applications, through: :pet_applications
   belongs_to :shelter
 

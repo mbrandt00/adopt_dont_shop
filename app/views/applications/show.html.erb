@@ -20,54 +20,62 @@
   <h4>Selected Pets Information:
   </h4>
   <%@application.pets.each do |pet|  %>
-    <ul>
-      <li>Name:
-        <%=pet.name %>
-      </li>
-      <li>Age:
-        <%=pet.age %>
-      </li>
-      <li>Breed:
-        <%=pet.breed %>
-      </li>
-      <li>Shelter:
-        <%=pet.shelter_name %>
-      </li>
-    </ul>
+    <div class="selected_dogs">
+      <div id="pet-<%= pet.id%>">
+        <ul>
+          <li>Name:
+            <%=pet.name %>
+          </li>
+          <li>Age:
+            <%=pet.age %>
+          </li>
+          <li>Breed:
+            <%=pet.breed %>
+          </li>
+          <li>Shelter:
+            <%=pet.shelter_name %>
+          </li>
+        </ul>
+      </div>
+    </div>
   <% end %>
 <% end %>
 
 <% if @application.status == "In Progress" && @application.pets.empty?%>
   <h4>Please add a pet to this application</h4>
-  <div class="Dog Selection">
+  <div class="dog_search">
     <%= form_with url: "/pets/applications/#{@application.id}", method: :get, local: true do |f| %>
     <%= f.label :search %>
     <%= f.text_field :search %>
     <%= f.submit "Search" %>
   <% end %>
+</div>
+<div class="filtered_dogs">
   <%@pets.each do |pet|  %>
-    <ul>
-      <li>Name:
-        <%=pet.name %>
-      </li>
-      <li>Age:
-        <%=pet.age %>
-      </li>
-      <li>Breed:
-        <%=pet.breed %>
-      </li>
-      <li>Shelter:
-        <%=pet.shelter_name %>
-      </li>
-    </ul>
-    <%= button_to "Select #{pet.name}", "/pets/applications/#{@application.id}/#{pet.id}", method: :post %>
-  <% end %>
+    <div id="pet-<%= pet.id %>">
+      <ul>
+        <li>Name:
+          <%=pet.name %>
+        </li>
+        <li>Age:
+          <%=pet.age %>
+        </li>
+        <li>Breed:
+          <%=pet.breed %>
+        </li>
+        <li>Shelter:
+          <%=pet.shelter_name %>
+        </li>
+      </ul>
+      <%= button_to "Select #{pet.name}", "/pets/applications/#{@application.id}/#{pet.id}", method: :post %>
+    <% end %>
+  </div>
 </div>
 <% end %>
 
 <% if @application.status == "In Progress" && @application.pets.length > 0 %>
 <h4>Would you like to add another pet?</h4>
-<div class="Dog Selection">
+<div class="more_dogs">
   <%= form_with url: "/pets/applications/#{@application.id}", method: :get, local: true do |f| %>
   <%= f.label :search %>
   <%= f.text_field :search %>
@@ -91,11 +99,13 @@
   <%= button_to "Select #{pet.name}", "/pets/applications/#{@application.id}/#{pet.id}", method: :post %>
 <% end %>
 </div>
+<div class="submission">
 <h4>To finish submitting your application, please answer the question below and submit.</h4>
 <%= form_with url: "/pets/applications/#{@application.id}/submit", method: :patch, local:true do |form| %>
 <p>
-<%= form.label :description, "Please describe why you would be a good owner. " %></p>
+  <%= form.label :description, "Please describe why you would be a good owner." %></p>
 <%= form.text_area :description, :cols => "50", :rows => "10" %></p>
 <%= form.submit 'Submit Application' %>
-  <% end %>
 <% end %>
+<% end %>
+</div>
