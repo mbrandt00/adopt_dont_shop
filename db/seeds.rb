@@ -11,7 +11,7 @@ VeterinaryOffice.destroy_all
                 rank: rand(1..3))
 end
 
-10.times do 
+100.times do
   Pet.create(name: Faker::Creature::Dog.name,
             adoptable: Faker::Boolean::boolean(true_ratio: 0.8),
             age: rand(0..18),
@@ -33,3 +33,22 @@ end
                       review_rating: rand(5..10),
                       veterinary_office_id: VeterinaryOffice.all.sample.id)
   end
+
+5.times do
+  application = Application.create(name: Faker::Name.name,
+                     street_address:Faker::Address.street_address,
+                     city: Faker::Address.city,
+                     state: Faker::Address.state,
+                     zipcode: Faker::Address.street_address.to_i,
+                     description: 'I like pets!',
+                     status: 'In Progress')
+  application.adopt(Pet.all.sample)
+application = Application.create(name: Faker::Name.name,
+                  street_address:Faker::Address.street_address,
+                  city: Faker::Address.city,
+                  state: Faker::Address.state,
+                  zipcode: Faker::Address.street_address.to_i,
+                  description: 'I like pets!',
+                  status: 'Pending')
+  application.adopt(Pet.all.sample)
+ end
