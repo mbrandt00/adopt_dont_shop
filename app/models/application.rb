@@ -11,4 +11,13 @@ class Application < ApplicationRecord
     self.pets << pet
   end
 
+  def self.require_action(shelter_id)
+    pet_ids = []
+    Application.where(status: 1).joins(pet_applications: :pet).where(pets: {shelter_id: shelter_id}).each do |application|
+      pet_ids << application.pets.ids
+    end
+    pets = Pet.find(pet_ids)
+    return pets
+  end
+
 end

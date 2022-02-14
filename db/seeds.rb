@@ -42,7 +42,6 @@ end
                      zipcode: Faker::Address.street_address.to_i,
                      description: 'I like pets!',
                      status: 'In Progress')
-  application.adopt(Pet.all.sample)
 application = Application.create(name: Faker::Name.name,
                   street_address:Faker::Address.street_address,
                   city: Faker::Address.city,
