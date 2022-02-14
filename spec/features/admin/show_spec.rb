@@ -32,10 +32,25 @@ RSpec.describe 'Admin show page' do
         expect(page).to have_content('2 Pets')
       end
     end
+    it 'will have a count of adopted pets from a shelter' do
+      shelter = Shelter.create(name: 'Aurora shelter', city: 'Aurora, CO', foster_program: false, rank: 9)
+      pet_1 = Pet.create(adoptable: true, age: 1, breed: 'sphynx', name: 'Bare-y Manilow', shelter_id: shelter.id)
+      pet_2 = Pet.create(adoptable: true, age: 3, breed: 'doberman', name: 'Lobster', shelter_id: shelter.id)
+      pet_3 = Pet.create(adoptable: true, age: 3, breed: 'lynx', name: 'Larry', shelter_id: shelter.id)
+      application_1 = Application.create(name: "Art Schinner", street_address: "4873 Zboncak Mission", city: "Kuhlmanview", state: "Massachusetts", zipcode: 899, description: "I like pets!", status: "Pending")
+      application_2 = Application.create(name: "The Hon. Dion Hansen", street_address: "27332 Toya Route", city: "West Gale", state: "South Dakota", zipcode: 2863, description: "I like pets!", status: "Pending")
+      application_1.adopt(pet_1)
+      application_2.adopt(pet_2)
+      visit "/admin/applications/#{application_1.id}"
+      within "#selected_dog-#{pet_1.id}" do
+        click_button('Approve Pet')
+      end
+      visit "/admin/applications/#{application_2.id}"
+      within "#selected_dog-#{pet_2.id}" do
+        click_button('Approve Pet')
+      end
+      visit "/admin/shelters/#{shelter.id}"
+      expect(page).to have_content("Number of Adopted Pets: 2 Pets")
+    end
   end
 end
-
-# As a visitor
-# When I visit an admin shelter show page
-# Then I see a section for statistics
-# And in that section I see the number of pets at that shelter that are adoptable

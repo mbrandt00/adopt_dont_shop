@@ -13,7 +13,7 @@ end
 
 100.times do
   Pet.create(name: Faker::Creature::Dog.name,
-            adoptable: Faker::Boolean::boolean(true_ratio: 0.8),
+            adoptable: true,
             age: rand(0..18),
             breed: Faker::Creature::Dog.breed,
             shelter_id: Shelter.all.sample.id)
