@@ -60,7 +60,7 @@
 <% end %>
 </div>
 <%end%>
-<%if @undetermined_pets.empty? == false %>
+<%if @undetermined_pets.any? %>
 <div class="undecided_pets">
 <h4>Undecided Pets:
 </h4>
@@ -82,7 +82,8 @@
     </ul>
     <%=button_to("Approve Pet", "/admin/applications/#{@pending_app.id}/#{pet.id}", :decision => 'approve', params: { descision: :accepted }) %>
     <%=button_to("Reject Pet", "/admin/applications/#{@pending_app.id}/#{pet.id}", params: { descision: :rejected})%>
+    </div>
   <% end %>
-  </div>
+
 </div>
-<%end%>
+<%end %>
