@@ -31,6 +31,15 @@ RSpec.describe 'Admin show page' do
       end
       expect(page).to_not have_button("Approve Pet")
     end
+    it 'will change the adoptable status of a pet to false' do
+      @application_1.adopt(@pet_1)
+      visit "/admin/applications/#{@application_1.id}"
+      within "#selected_dog-#{@pet_1.id}" do
+        click_button('Approve Pet')
+      end
+      visit "/pets/#{@pet_1.id}"
+      expect(page). to have_content("Adoptable? false")
+    end
   end
   describe 'Rejecting a pet application' do
     it 'will have a button to reject a pet application' do
