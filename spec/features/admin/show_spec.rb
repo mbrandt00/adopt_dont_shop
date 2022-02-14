@@ -17,5 +17,13 @@ RSpec.describe 'Admin index' do
       end
       expect(current_path).to eq("/admin/shelters/#{@shelter_1.id}")
     end
+    describe 'statistics' do
+      it 'will show the average age of all adoptable pets in the shelter' do
+        visit "/admin/shelters/#{@shelter_1.id}"
+        within ".shelter_statistics" do
+          expect(page).to have_content('4.0 years old')
+        end
+      end
+    end
   end
 end
