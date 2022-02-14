@@ -41,5 +41,9 @@ class Shelter < ApplicationRecord
     find(pending_shelter_ids)
   end
 
+  def average_adoptable_age
+    pets.where(adoptable:true).average(:age)
+  end
+
 
 end
