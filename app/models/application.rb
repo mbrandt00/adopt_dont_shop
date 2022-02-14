@@ -5,7 +5,7 @@ class Application < ApplicationRecord
   validates :street_address, presence: true
   validates :city, presence: true
   validates :zipcode, presence: true
-  enum status: {"In Progress": 0, "Pending": 1, "Completed": 2, "Rejected": 3}
+  enum status: {"In Progress": 0, "Pending": 1, "Approved": 2, "Rejected": 3}
 
   def adopt(pet)
     self.pets << pet
