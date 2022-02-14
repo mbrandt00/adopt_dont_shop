@@ -2,17 +2,28 @@
   Admin Page</h1>
 
 <div class="shelter_statistics">
-  <h3>Shelter Statistics</h3>
+  <h2>Shelter Statistics</h2>
   <ul>
     <li>Average Age of Adoptable Pets:
-      <%=@shelter.average_adoptable_age%> years old
-      </li>
+      <%=@shelter.average_adoptable_age%>
+      years old
+    </li>
     <li>Number of Adoptable Pets:
-      <%=@shelter.adoptable_pet_count%> Pets
-      </li>
-    </ul>
+      <%=@shelter.adoptable_pet_count%>
+      Pets
+    </li>
     <li>Number of Adopted Pets:
-      <%=@shelter.count_of_adopted_pets%> Pets
-      </li>
+      <%=@shelter.count_of_adopted_pets%>
+      Pets
+    </li>
+  </ul>
+</div>
+
+<div class="action_required">
+  <h2>Action Required</h2>
+  <%@require_action.each do |pet|  %>
+    <ul>
+      <li><%= pet.name%></li>
     </ul>
-  </div>
+  <%end%>
+</div>

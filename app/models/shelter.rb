@@ -42,7 +42,7 @@ class Shelter < ApplicationRecord
   end
 
   def average_adoptable_age
-    pets.where(adoptable:true).average(:age)
+    pets.where(adoptable:true).average(:age).round(1)
   end
 
   def adoptable_pet_count
@@ -51,5 +51,9 @@ class Shelter < ApplicationRecord
 
   def count_of_adopted_pets
     pets.where(adoptable:false).count
+  end
+
+  def undecided_pets
+    pets.where(adoptable:true)
   end
 end
