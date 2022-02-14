@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Admin index' do
+RSpec.describe 'Admin show page' do
   before(:each) do
     @shelter_1 = Shelter.create(name: 'Aurora shelter', city: 'Aurora, CO', foster_program: false, rank: 9)
     @shelter_2 = Shelter.create(name: 'RGV animal shelter', city: 'Harlingen, TX', foster_program: false, rank: 5)
@@ -25,5 +25,17 @@ RSpec.describe 'Admin index' do
         end
       end
     end
+    it 'will show the number of adoptable pets in one shelter' do
+      @shelter_1.pets.create(name: 'Clawdia', breed: 'shorthair', age: 3, adoptable: false)
+      visit "/admin/shelters/#{@shelter_1.id}"
+      within ".shelter_statistics" do
+        expect(page).to have_content('2 Pets')
+      end
+    end
   end
 end
+
+# As a visitor
+# When I visit an admin shelter show page
+# Then I see a section for statistics
+# And in that section I see the number of pets at that shelter that are adoptable
