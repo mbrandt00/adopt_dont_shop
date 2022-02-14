@@ -18,8 +18,9 @@
   <li>Description:
     <%=@pending_app.description %></li>
 </ul>
-<h4>Approped Pets</h4>
+<%if @approved_pets.empty? == false %>
 <div class="approved_pets">
+<h4>Approped Pets</h4>
   <% @approved_pets.each do |pet| %>
     <ul>
       <li>Name:
@@ -37,6 +38,8 @@
     </ul>
   <% end %>
 </div>
+<%end%>
+<%if @rejected_pets.empty? == false %>
 <div class="denied_pets">
 <h4>Denied Pets</h4>
 <% @rejected_pets.each do |pet| %>
@@ -56,6 +59,8 @@
   </ul>
 <% end %>
 </div>
+<%end%>
+<%if @undetermined_pets.empty? == false %>
 <div class="undecided_pets">
 <h4>Undecided Pets:
 </h4>
@@ -80,3 +85,4 @@
   <% end %>
   </div>
 </div>
+<%end%>
