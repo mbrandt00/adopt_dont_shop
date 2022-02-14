@@ -2,8 +2,11 @@
 <div class="Shelters">
   <% @shelters.each do |shelter| %>
     <div id="shelter-id<%shelter.id%>">
-      <h3>Name:
-        <%= shelter.name%></h3>
+      <h3>
+        <a href="/admin/shelters/<%=shelter.id%>">
+          <%= shelter.name%>
+        </a>
+      </h3>
     </div>
   <% end %>
 </div>
@@ -11,6 +14,9 @@
 <div class="pending_requests">
   <h1>Shelters with pending requests</h1>
   <% @pending.each do |shelter| %>
-  <h3> Shelter name: <%= shelter.name %> </h3>
+    <h3>
+      Shelter name:
+      <%= shelter.name %>
+    </h3>
   <% end %>
 </div>
