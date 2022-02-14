@@ -21,9 +21,18 @@
 
 <div class="action_required">
   <h2>Action Required</h2>
-  <%@require_action.each do |pet|  %>
-    <ul>
-      <li><%= pet.name%></li>
-    </ul>
+  <%@require_action.each do |application, pets|  %>
+    <h3>Applicant's name:
+      <%=application.name%></h3>
+    <h4>Undecided Pets</h4>
+    <% pets.each do |pet| %>
+      <div id="pet-<%="#{pet.id}"%>">
+        <ul>
+          <a href="/admin/applications/<%=application.id%>">
+            <li><%= pet.name%></li>
+          </a>
+        </ul>
+      <%end %>
+    </div>
   <%end%>
 </div>
