@@ -12,12 +12,10 @@ class Application < ApplicationRecord
   end
 
   def self.require_action(shelter_id)
-    pet_ids = []
+    applications = Hash.new
     Application.where(status: 1).joins(pet_applications: :pet).where(pets: {shelter_id: shelter_id}).each do |application|
-      pet_ids << application.pets.ids
+      applications[application] = application.pets
     end
-    pets = Pet.find(pet_ids)
-    return pets
+    return applications
   end
-
 end
