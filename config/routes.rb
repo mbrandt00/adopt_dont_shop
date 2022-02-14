@@ -22,8 +22,9 @@ Rails.application.routes.draw do
   delete '/pets/:id', to: 'pets#destroy'
 
   get '/admin/shelters', to: 'admin#index'
-  get '/admin/applications/:id', to: 'admin#show'
-  post '/admin/applications/:application_id/:pet_id', to: 'admin#update'
+  get '/admin/shelters/:id', to: 'admin#show'
+  get '/admin/applications/:id', to: 'admin_apps#show'
+  post '/admin/applications/:application_id/:pet_id', to: 'admin_apps#update'
 
   get '/veterinary_offices', to: 'veterinary_offices#index'
   get '/veterinary_offices/new', to: 'veterinary_offices#new'
