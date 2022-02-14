@@ -80,7 +80,7 @@
         <%=pet.shelter_name %>
       </li>
     </ul>
-    <%=button_to("Approve Pet", "/admin/applications/#{@pending_app.id}/#{pet.id}", :decision => 'approve', params: { descision: :accepted }) %>
+    <%=pet.adoptable? ? button_to("Approve Pet", "/admin/applications/#{@pending_app.id}/#{pet.id}", :decision => 'approve', params: { descision: :accepted }) : "This pet has been approved for adoption." %>
     <%=button_to("Reject Pet", "/admin/applications/#{@pending_app.id}/#{pet.id}", params: { descision: :rejected})%>
     </div>
   <% end %>
