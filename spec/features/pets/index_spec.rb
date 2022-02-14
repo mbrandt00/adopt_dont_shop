@@ -95,7 +95,6 @@ RSpec.describe 'the pets index' do
     fill_in "state", with: 'Oregon'
     fill_in "zipcode", with: 97035
     click_button "Submit Application"
-    expect(current_path). to eq("/pets/applications/1")
     expect(page).to have_content('John Smith')
     expect(page).to have_content('Zipcode')
   end
