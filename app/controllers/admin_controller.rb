@@ -19,6 +19,8 @@ class AdminController < ApplicationController
     pet_application = PetApplication.find_joins_row(pending_app, pet).first
     if params[:descision] == 'accepted'
       pet_application.Accepted!
+      pet.adoptable = false
+      pet.save
     elsif params[:descision] == 'rejected'
       pet_application.Rejected!
     end
