@@ -12,13 +12,13 @@ class PetApplication < ApplicationRecord
 
   def self.find_approved_pets(application)
      app_id = application.id
-     ids = where(application_id: app_id, status: "Accepted").pluck(:pet_id)
+     ids = where(application_id: app_id, status: 0).pluck(:pet_id)
      Pet.find(ids)
   end
 
   def self.find_rejected_pets(application)
      app_id = application.id
-     ids = where(application_id: app_id, status: "Rejected").pluck(:pet_id)
+     ids = where(application_id: app_id, status: 1).pluck(:pet_id)
      Pet.find(ids)
   end
 

@@ -22,10 +22,9 @@ RSpec.describe 'the veterinarian update' do
 
       fill_in 'Name', with: 'Itchy'
       uncheck 'Adoptable'
+      fill_in 'Breed', with: 'Golden Retriever'
       fill_in 'Age', with: 1
       click_button 'Save'
-
-      expect(page).to have_current_path("/pets/#{pet.id}")
       expect(page).to have_content('Itchy')
       expect(page).to_not have_content('Charlie')
     end
