@@ -16,7 +16,8 @@
   <li>Zipcode:
     <%=@application.zipcode %></li>
 </ul>
-<h4>Selected Pets Information:
+<%if @application.pets.empty? == false%>
+  <h4>Selected Pets Information:
   </h4>
   <%@application.pets.each do |pet|  %>
     <div class="selected_dogs">
@@ -38,6 +39,7 @@
       </div>
     </div>
   <% end %>
+<% end %>
 
 <% if @application.status == "In Progress" && @application.pets.empty?%>
   <h4>Please add a pet to this application</h4>
@@ -101,7 +103,7 @@
 <h4>To finish submitting your application, please answer the question below and submit.</h4>
 <%= form_with url: "/pets/applications/#{@application.id}/submit", method: :patch, local:true do |form| %>
 <p>
-  <%= form.label :description, "Please describe why you would be a good owner." %></p>
+  <%= form.label :description, "Please describe why you would be a good owner. " %></p>
 <%= form.text_area :description, :cols => "50", :rows => "10" %></p>
 <%= form.submit 'Submit Application' %>
 <% end %>

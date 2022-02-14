@@ -17,16 +17,43 @@ RSpec.describe 'Admin show page' do
       @application_1.adopt(@pet_1)
       visit "/admin/applications/#{@application_1.id}"
       within "#selected_dog-#{@pet_1.id}" do
-        click_button('Approve pet')
-        expect(page).to have_content("Pet Approved")
+        click_button('Approve Pet')
+      end
+      within ".approved_pets" do
+        expect(page).to have_content(@pet_1.name)
       end
     end
     it 'will return to admin show page and have no button' do
       @application_1.adopt(@pet_1)
       visit "/admin/applications/#{@application_1.id}"
       within "#selected_dog-#{@pet_1.id}" do
-        click_button('Approve pet')
-        expect(page).to_not have_button("Approve pet")
+        click_button('Approve Pet')
+      end
+      expect(page).to_not have_button("Approve Pet")
+    end
+  end
+  describe 'Rejecting a pet application' do
+    it 'will have a button to reject a pet application' do
+      @application_2.adopt(@pet_2)
+      visit "/admin/applications/#{@application_2.id}"
+      within "#selected_dog-#{@pet_2.id}" do
+        expect(page).to have_button("Reject Pet")
+        expect(page).to have_button("Approve Pet")
+        click_button('Reject Pet')
+      end
+      within ".denied_pets" do
+        expect(page).to have_content(@pet_2.name)
+      end
+    end
+    it 'will will return to admin show page and have no button and say Rejected' do
+      @application_1.adopt(@pet_1)
+      visit "/admin/applications/#{@application_1.id}"
+      within ".undecided_pets" do
+        expect(page).to have_button("Reject Pet")
+        expect(page).to have_button("Approve Pet")
+        click_button('Reject Pet')
+        expect(page).to_not have_button('Reject Pet')
+        expect(page).to_not have_button('Approve Pet')
       end
     end
   end
