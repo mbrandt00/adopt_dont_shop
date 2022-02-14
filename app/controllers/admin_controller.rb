@@ -9,7 +9,8 @@ class AdminController < ApplicationController
     @approved_pets = PetApplication.find_approved_pets(@pending_app)
     @rejected_pets = PetApplication.find_rejected_pets(@pending_app)
     @undetermined_pets = PetApplication.find_undecided_pets(@pending_app)
-    @pending_app.Completed! if @undetermined_pets.empty?
+    @pending_app.Approved! if @rejected_pets.empty? && @undetermined_pets.empty?
+    @pending_app.Rejected! if @rejected_pets.any?
   end
 
   def update
