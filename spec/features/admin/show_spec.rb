@@ -77,4 +77,30 @@ RSpec.describe 'Admin show page' do
         expect(page).to have_content(@pet_1.name)
       end
     end
+  describe 'Application status' do
+    it 'will mark the application as rejected if even one pet is rejected' do
+      @application_1.adopt(@pet_1)
+      @application_1.adopt(@pet_2)
+      visit "/admin/applications/#{@application_1.id}"
+      within "#selected_dog-#{@pet_1.id}" do
+        click_button("Approve Pet")
+      end
+      within "#selected_dog-#{@pet_2.id}" do
+        click_button("Reject Pet")
+      end
+      expect(page).to have_content("Status: Rejected")
+    end
+    it 'will mark the application as accepted if all of the pets are accepted' do
+      @application_1.adopt(@pet_1)
+      @application_1.adopt(@pet_2)
+      visit "/admin/applications/#{@application_1.id}"
+      within "#selected_dog-#{@pet_1.id}" do
+        click_button("Approve Pet")
+      end
+      within "#selected_dog-#{@pet_2.id}" do
+        click_button("Approve Pet")
+      end
+      expect(page).to have_content("Status: Approved")
+    end
   end
+end
