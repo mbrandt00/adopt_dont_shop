@@ -22,9 +22,8 @@
 <div class="action_required">
   <h2>Action Required</h2>
   <%@require_action.each do |application, pets|  %>
-    <h3>Applicant's name:
-      <%=application.name%></h3>
-    <h4>Undecided Pets</h4>
+    <h4>
+      <%=application.name%></h4>
     <% pets.each do |pet| %>
       <div id="pet-<%="#{pet.id}"%>">
         <ul>
