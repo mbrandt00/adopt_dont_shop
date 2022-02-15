@@ -15,13 +15,7 @@
         <%= msg %>
       </div>
     <% end %>
-    <section>
-      <p><%= link_to "Pets", "/pets" %></p>
-      <p><%= link_to "Shelters", "/shelters" %></p>
-      <p><%= link_to "Veterinarians", "/veterinarians" %></p>
-      <p><%= link_to "Veterinary Offices", "/veterinary_offices" %></p>
-      <p> <%= link_to "Pet Applications", "/pets/applications"%></p>
-    </section>
+    <%= render '/layouts/navbar' %>
     <%= yield %>
   </body>
 </html>
