@@ -41,6 +41,14 @@ RSpec.describe Shelter, type: :model do
         expect(Shelter.order_by_number_of_pets).to eq([@shelter_1, @shelter_3, @shelter_2])
       end
     end
+    describe '#pending_applications' do
+      it 'will return the shelters that have pending applications' do
+        expect(Shelter.pending_applications).to eq([])
+        application = Application.create(name: 'bobby fisher', street_address: '100 east st', city: 'la', state: 'CA', zipcode: 1234, status: 'Pending')
+        application.adopt(@pet_1)
+        expect(Shelter.pending_applications).to eq([@shelter_1])
+      end
+    end
   end
 
   describe 'instance methods' do
@@ -65,6 +73,21 @@ RSpec.describe Shelter, type: :model do
     describe '.pet_count' do
       it 'returns the number of pets at the given shelter' do
         expect(@shelter_1.pet_count).to eq(3)
+      end
+    end
+    describe '.adoptable_pet_count' do
+      it 'will return a count of a shelters adoptable pets' do
+        expect(@shelter_1.adoptable_pet_count).to eq(2)
+      end
+    end
+    describe '.count_of_adopted_pets' do
+      it 'will return a count of how many pets have been adopted from shelter' do
+        expect(@shelter_1.count_of_adopted_pets).to eq(1)
+      end
+    end
+    describe '.undecided_pets' do
+      it 'will return the pets objects that are adoptable' do
+        expect(@shelter_1.undecided_pets).to eq([@pet_2, @pet_4])
       end
     end
   end
