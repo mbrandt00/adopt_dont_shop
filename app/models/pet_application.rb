@@ -7,7 +7,6 @@ class PetApplication < ApplicationRecord
       pet_id = pet.id
       app_id = application.id
       where(pet_id: pet_id, application_id: app_id)
-
     end
 
   def self.find_approved_pets(application)

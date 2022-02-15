@@ -104,7 +104,7 @@
 <%= form_with url: "/pets/applications/#{@application.id}/submit", method: :patch, local:true do |form| %>
 <p>
   <%= form.label :description, "Please describe why you would be a good owner. " %></p>
-<%= form.text_area :description, :cols => "50", :rows => "10" %></p>
+<%= form.text_area :description, :cols => "50", :rows => "10", :required => true %></p>
 <%= form.submit 'Submit Application' %>
 <% end %>
 <% end %>
