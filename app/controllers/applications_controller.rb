@@ -1,18 +1,15 @@
 class ApplicationsController < ApplicationController
-
-
   def create
     application = Application.new(application_params)
     if application.save
       redirect_to "/pets/applications/#{application.id}"
     else
-      flash[:notice] = "Missing Input!"
+      flash[:notice] = 'Missing Input!'
       render :new
     end
   end
 
-  def new
-  end
+  def new; end
 
   def update
     application = Application.find(params[:applicationid])
@@ -26,20 +23,18 @@ class ApplicationsController < ApplicationController
     redirect_to "/pets/applications/#{application.id}"
   end
 
-
-
   def show
     @application = Application.find(params[:id])
-    if params[:search].present?
-      @pets = Pet.sorted(params[:search])
-    else
-      @pets = Pet.all
-    end
+    @pets = if params[:search].present?
+              Pet.sorted(params[:search])
+            else
+              Pet.all
+            end
   end
 
   private
-    def application_params
-      params.permit(:name, :street_address, :city, :state, :zipcode, :description)
-    end
 
+  def application_params
+    params.permit(:name, :street_address, :city, :state, :zipcode, :description)
+  end
 end

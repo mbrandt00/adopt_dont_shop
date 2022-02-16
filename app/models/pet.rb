@@ -5,7 +5,7 @@ class Pet < ApplicationRecord
 
   validates :name, presence: true
   validates :age, presence: true, numericality: true
-  validates :breed, presence:true
+  validates :breed, presence: true
 
   def shelter_name
     shelter.name
@@ -16,8 +16,6 @@ class Pet < ApplicationRecord
   end
 
   def self.sorted(dogname)
-    where("lower(name) LIKE ?", "%#{dogname.downcase}%")
+    where('lower(name) LIKE ?', "%#{dogname.downcase}%")
   end
-
-
 end

@@ -8,5 +8,4 @@ class AdminController < ApplicationController
     @shelter = Shelter.find(params[:id])
     @require_action = Application.require_action(@shelter.id)
   end
-
 end

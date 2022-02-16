@@ -2,12 +2,13 @@ require 'rails_helper'
 
 RSpec.describe PetApplication do
   context 'associations' do
-    it {should belong_to(:application)}
-    it {should belong_to(:pet)}
+    it { should belong_to(:application) }
+    it { should belong_to(:pet) }
   end
   describe 'class methods' do
     before(:each) do
-      @application = Application.create(name: 'bobby fisher', street_address: '100 east st', city: 'la', state: 'CA', zipcode: 1234, status: 'Pending')
+      @application = Application.create(name: 'bobby fisher', street_address: '100 east st', city: 'la', state: 'CA',
+                                        zipcode: 1234, status: 'Pending')
       @shelter_1 = Shelter.create(name: 'Aurora shelter', city: 'Aurora, CO', foster_program: false, rank: 9)
       @pet_1 = @shelter_1.pets.create(name: 'Mr. Pirate', breed: 'tuxedo shorthair', age: 5, adoptable: true)
       @pet_2 = @shelter_1.pets.create(name: 'Clawdia', breed: 'shorthair', age: 3, adoptable: true)

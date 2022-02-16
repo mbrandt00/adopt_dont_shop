@@ -26,7 +26,7 @@ RSpec.describe Shelter, type: :model do
   describe 'class methods' do
     describe '#search' do
       it 'returns partial matches' do
-        expect(Shelter.search("Fancy")).to eq([@shelter_3])
+        expect(Shelter.search('Fancy')).to eq([@shelter_3])
       end
     end
 
@@ -44,7 +44,8 @@ RSpec.describe Shelter, type: :model do
     describe '#pending_applications' do
       it 'will return the shelters that have pending applications' do
         expect(Shelter.pending_applications).to eq([])
-        application = Application.create(name: 'bobby fisher', street_address: '100 east st', city: 'la', state: 'CA', zipcode: 1234, status: 'Pending')
+        application = Application.create(name: 'bobby fisher', street_address: '100 east st', city: 'la', state: 'CA',
+                                         zipcode: 1234, status: 'Pending')
         application.adopt(@pet_1)
         expect(Shelter.pending_applications).to eq([@shelter_1])
       end

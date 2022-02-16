@@ -21,6 +21,4 @@ class AdminAppsController < ApplicationController
     end
     redirect_to "/admin/applications/#{pending_app.id}"
   end
-
-
 end

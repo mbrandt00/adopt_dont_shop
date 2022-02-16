@@ -14,10 +14,10 @@ class Shelter < ApplicationRecord
   end
 
   def self.order_by_number_of_pets
-    select("shelters.*, count(pets.id) AS pets_count")
-      .joins("LEFT OUTER JOIN pets ON pets.shelter_id = shelters.id")
-      .group("shelters.id")
-      .order("pets_count DESC")
+    select('shelters.*, count(pets.id) AS pets_count')
+      .joins('LEFT OUTER JOIN pets ON pets.shelter_id = shelters.id')
+      .group('shelters.id')
+      .order('pets_count DESC')
   end
 
   def pet_count
@@ -42,18 +42,18 @@ class Shelter < ApplicationRecord
   end
 
   def average_adoptable_age
-    pets.where(adoptable:true).average(:age).round(1)
+    pets.where(adoptable: true).average(:age).round(1)
   end
 
   def adoptable_pet_count
-    pets.where(adoptable:true).count
+    pets.where(adoptable: true).count
   end
 
   def count_of_adopted_pets
-    pets.where(adoptable:false).count
+    pets.where(adoptable: false).count
   end
 
   def undecided_pets
-    pets.where(adoptable:true)
+    pets.where(adoptable: true)
   end
 end

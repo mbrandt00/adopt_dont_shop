@@ -34,7 +34,6 @@ Rails.application.routes.draw do
   patch '/veterinary_offices/:id', to: 'veterinary_offices#update'
   delete '/veterinary_offices/:id', to: 'veterinary_offices#destroy'
 
-
   get '/veterinarians', to: 'veterinarians#index'
   get '/veterinarians/:id', to: 'veterinarians#show'
   get '/veterinarians/:id/edit', to: 'veterinarians#edit'

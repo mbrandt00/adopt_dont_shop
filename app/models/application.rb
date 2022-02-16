@@ -6,21 +6,23 @@ class Application < ApplicationRecord
   validates :city, presence: true
   validates :zipcode, presence: true, numericality: true
   validates :state, presence: true
-  enum status: {"In Progress": 0, "Pending": 1, "Approved": 2, "Rejected": 3}
+  enum status: { "In Progress": 0, "Pending": 1, "Approved": 2, "Rejected": 3 }
   before_save :normalize_name, on: :create
   def adopt(pet)
-    self.pets << pet
+    pets << pet
   end
 
   def self.require_action(shelter_id)
-    applications = Hash.new
-    where(status: 1).joins(pet_applications: :pet).where(pets: {shelter_id: shelter_id}).each do |application|
+    applications = {}
+    where(status: 1).joins(pet_applications: :pet).where(pets: { shelter_id: shelter_id }).each do |application|
       applications[application] = application.pets
     end
-    return applications
+    applications
   end
+
   private
-    def normalize_name
-      self.name = name.downcase.titleize
-    end
+
+  def normalize_name
+    self.name = name.downcase.titleize
+  end
 end
