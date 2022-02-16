@@ -20,7 +20,7 @@
 
 ## Tools
 
-Adopt, Don't Shop was built with Rails 5.2.6, in addition to PostgreSQL, HTML, CSS, and Ruby. [The app is currently deployed through Heroku](https://adoptdontshop2022.herokuapp.com), which was managed using the Heroku CLI. RSpec (with Capybara and Shoulda-Matchers gems) was used for test-driven development (TDD). SimpleCov was used to track test coverage, and reported 100% coverage. Feature tests were used to drive the development and test the functionality of all controllers and views, as well as unit tests for all models and model-level methods. Seed data was generated with the help of the Faker package.
+Adopt, Don't Shop was built with Rails 5.2.6, in addition to PostgreSQL, HTML, CSS, and Ruby. [The app is currently deployed through Heroku](https://adoptdontshopbrandt.herokuapp.com), which was managed using the Heroku CLI. RSpec (with Capybara and Shoulda-Matchers gems) was used for test-driven development (TDD). SimpleCov was used to track test coverage, and reported 100% coverage. Feature tests were used to drive the development and test the functionality of all controllers and views, as well as unit tests for all models and model-level methods. Seed data was generated with the help of the Faker package.
 
 ## Local Deployment
 
