@@ -1,16 +1,18 @@
 <% pets.each do |pet| %>
-  <ul>
-    <li>Name:
-      <%=pet.name %>
-    </li>
-    <li>Age:
-      <%=pet.age %>
-    </li>
-    <li>Breed:
-      <%=pet.breed %>
-    </li>
-    <li>Shelter:
-      <%=pet.shelter_name %>
-    </li>
-  </ul>
+  <div id="pet-<%= pet.id%>">
+    <ul>
+      <li>Name:
+        <%=pet.name %>
+      </li>
+      <li>Age:
+        <%=pet.age %>
+      </li>
+      <li>Breed:
+        <%=pet.breed %>
+      </li>
+      <li>Shelter:
+        <%=pet.shelter_name %>
+      </li>
+    </ul>
+  </div>
 <% end %>
