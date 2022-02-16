@@ -1,11 +1,11 @@
 # Adopt, Don't Shop
 
-## Database Design
-[![Database Design](https://i.postimg.cc/4d2LyTYh/Screen-Shot-2022-02-16-at-2-02-29-PM.png)](https://postimg.cc/KkLrpwrZ)
-
 ## Background and Design
 
 "Adopt Don't Shop" is a fictitious pet adoption application that allows users to apply for new pooches and for shelters to approve or deny applications on the server side. 26 User stories/learning goals were provided to guide the App's development. On top of this, I implemented active record callbacks and basic bootstrap front end design as independent challenges for myself.
+
+## Database Design
+[![Database Design](https://i.postimg.cc/4d2LyTYh/Screen-Shot-2022-02-16-at-2-02-29-PM.png)](https://postimg.cc/KkLrpwrZ)
 
 #### Main goals for this project:
 * Build out CRUD functionality for a many to many relationship
