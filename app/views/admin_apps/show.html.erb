@@ -4,86 +4,43 @@
   <%= @pending_app.status%></h2>
 
 <h4>Applicant Information:</h4>
-<ul>
-  <li>Name:
-    <%=@pending_app.name %></li>
-  <li>Street address:
-    <%=@pending_app.street_address %></li>
-  <li>City:
-    <%=@pending_app.city %></li>
-  <li>State:
-    <%=@pending_app.state %></li>
-  <li>Zipcode:
-    <%=@pending_app.zipcode %></li>
-  <li>Description:
-    <%=@pending_app.description %></li>
-</ul>
+<%= render partial: "shared/applicant_info", locals: {application: @pending_app} %>
 <%if @approved_pets.empty? == false %>
-<div class="approved_pets">
-<h4>Approved Pets</h4>
-  <% @approved_pets.each do |pet| %>
-    <ul>
-      <li>Name:
-        <%=pet.name %>
-      </li>
-      <li>Age:
-        <%=pet.age %>
-      </li>
-      <li>Breed:
-        <%=pet.breed %>
-      </li>
-      <li>Shelter:
-        <%=pet.shelter_name %>
-      </li>
-    </ul>
+  <div class="approved_pets">
+    <h4>Approved Pets</h4>
+    <%= render partial: "shared/pet_info", locals: {pets: @approved_pets} %>
   <% end %>
-</div>
-<%end%>
-<%if @rejected_pets.empty? == false %>
-<div class="denied_pets">
-<h4>Denied Pets</h4>
-<% @rejected_pets.each do |pet| %>
-  <ul>
-    <li>Name:
-      <%=pet.name %>
-    </li>
-    <li>Age:
-      <%=pet.age %>
-    </li>
-    <li>Breed:
-      <%=pet.breed %>
-    </li>
-    <li>Shelter:
-      <%=pet.shelter_name %>
-    </li>
-  </ul>
-<% end %>
-</div>
-<%end%>
-<%if @undetermined_pets.any? %>
-<div class="undecided_pets">
-<h4>Undecided Pets:
-</h4>
-<%@undetermined_pets.each do |pet|  %>
-  <div id="selected_dog-<%=pet.id%>">
-    <ul>
-      <li>Name:
-        <%=pet.name %>
-      </li>
-      <li>Age:
-        <%=pet.age %>
-      </li>
-      <li>Breed:
-        <%=pet.breed %>
-      </li>
-      <li>Shelter:
-        <%=pet.shelter_name %>
-      </li>
-    </ul>
-    <%=pet.adoptable? ? button_to("Approve Pet", "/admin/applications/#{@pending_app.id}/#{pet.id}", method: :post, :class => 'btn btn-large btn-primary', :decision => 'approve', params: { descision: :accepted }) : "This pet has been approved for adoption." %>
-    <%=button_to("Reject Pet", "/admin/applications/#{@pending_app.id}/#{pet.id}", method: :post, :class => "btn btn-danger", params: { descision: :rejected})%>
+  <%if @rejected_pets.empty? == false %>
+    <div class="denied_pets">
+      <h4>Denied Pets</h4>
+      <%= render partial: "shared/pet_info", locals: {pets: @rejected_pets} %>
     </div>
-  <% end %>
+  <%end%>
+  <%if @undetermined_pets.any? %>
+    <div class="undecided_pets">
+      <h4>Undecided Pets:
+      </h4>
+      <%@undetermined_pets.each do |pet|  %>
+        <div id="selected_dog-<%=pet.id%>">
+          <ul>
+            <li>Name:
+              <%=pet.name %>
+            </li>
+            <li>Age:
+              <%=pet.age %>
+            </li>
+            <li>Breed:
+              <%=pet.breed %>
+            </li>
+            <li>Shelter:
+              <%=pet.shelter_name %>
+            </li>
+          </ul>
+          <%=pet.adoptable? ? button_to("Approve Pet", "/admin/applications/#{@pending_app.id}/#{pet.id}", method: :post, :class => 'btn btn-large btn-primary', :decision => 'approve', params: { descision: :accepted }) : "This pet has been approved for
+          adoption." %>
+          <%=button_to("Reject Pet", "/admin/applications/#{@pending_app.id}/#{pet.id}", method: :post, :class => "btn btn-danger", params: { descision: :rejected})%>
+        </div>
+      <% end %>
 
-</div>
-<%end %>
+    </div>
+  <%end %>
